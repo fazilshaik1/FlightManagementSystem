@@ -1,14 +1,12 @@
 package com.dxctraining.schedulemodule.dto;
 
-import java.util.Date;
-
 public class ScheduleDto {
 	
 	private Integer scheduleId;
 	
-	private Date arrivalTime;
+	private long arrivalTime;
 	
-	private Date departureTime;
+	private long departureTime;
 	
 	private String sourceAirport;
 	
@@ -24,7 +22,7 @@ public class ScheduleDto {
 		
 	}
 	
-	public ScheduleDto(Integer scheduleId, Date arrivalTime, Date departureTime, String sourceAirport, String destinationAirport) {
+	public ScheduleDto(Integer scheduleId, long arrivalTime, long departureTime, String sourceAirport, String destinationAirport) {
 		this.scheduleId = scheduleId;
 		this.arrivalTime = arrivalTime;
 		this.departureTime = departureTime;
@@ -40,19 +38,19 @@ public class ScheduleDto {
 		this.scheduleId = scheduleId;
 	}
 
-	public Date getArrivalTime() {
+	public long getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Date arrivalTime) {
+	public void setArrivalTime(long arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Date getDepartureTime() {
+	public long getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(long departureTime) {
 		this.departureTime = departureTime;
 	}
 

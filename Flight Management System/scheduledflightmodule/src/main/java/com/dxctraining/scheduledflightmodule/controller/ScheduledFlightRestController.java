@@ -41,7 +41,7 @@ public class ScheduledFlightRestController {
 		scheduledFlight = service.save(scheduledFlight);
 		ScheduleDto scheduleDto = findScheduleByScheduleId(req.getScheduleId());
 		FlightDto flightDto = findFlightByFlightNumber(req.getFlightNumber());
-		ScheduledFlightDto response = util.sfDto(scheduledFlight,scheduleDto.getScheduleId(),scheduleDto.getArrivalTime(),scheduleDto.getDepartureTime(),scheduleDto.getSourceAirport(),scheduleDto.getDestinationAirport(),scheduleDto.getAirportCode(),flightDto.getFlightNumber(),flightDto.getFlightModel(),flightDto.getCarrierName(),flightDto.getSeatCapacity());
+		ScheduledFlightDto response = util.sfDto(scheduledFlight, scheduleDto, flightDto);
 		return response;
 	}
 	
@@ -52,7 +52,7 @@ public class ScheduledFlightRestController {
 		ScheduleDto scheduleDto = findScheduleByScheduleId(scheduleId);
 		BigInteger flightNumber = scheduledFlight.getFlightNumber();
 		FlightDto flightDto = findFlightByFlightNumber(flightNumber);
-		ScheduledFlightDto response = util.sfDto(scheduledFlight,scheduleId,scheduleDto.getArrivalTime(),scheduleDto.getDepartureTime(),scheduleDto.getSourceAirport(),scheduleDto.getDestinationAirport(),scheduleDto.getAirportCode(),flightNumber, flightDto.getFlightModel(), flightDto.getCarrierName(), flightDto.getSeatCapacity());
+		ScheduledFlightDto response = util.sfDto(scheduledFlight, scheduleDto, flightDto);
 		return response;
 	}
 	
@@ -65,7 +65,7 @@ public class ScheduledFlightRestController {
 			ScheduleDto scheduleDto = findScheduleByScheduleId(scheduleId);
 			BigInteger flightNumber = scheduledFlight.getFlightNumber();
 			FlightDto flightDto = findFlightByFlightNumber(flightNumber);
-			ScheduledFlightDto dto = util.sfDto(scheduledFlight,scheduleId,scheduleDto.getArrivalTime(),scheduleDto.getDepartureTime(),scheduleDto.getSourceAirport(),scheduleDto.getDestinationAirport(),scheduleDto.getAirportCode(),flightNumber, flightDto.getFlightModel(), flightDto.getCarrierName(), flightDto.getSeatCapacity());
+			ScheduledFlightDto dto = util.sfDto(scheduledFlight, scheduleDto, flightDto);
 			response.add(dto);
 		}
 		return response;

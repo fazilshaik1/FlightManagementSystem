@@ -1,7 +1,6 @@
 package com.dxctraining.scheduledflightmodule.dto;
 
 import java.math.BigInteger;
-import java.util.Date;
 
 public class ScheduledFlightDto {
 	
@@ -13,9 +12,9 @@ public class ScheduledFlightDto {
 	
 	private BigInteger flightNumber;
 	
-	private Date arrivalTime;
+	private long arrivalTime;
 	
-	private Date departureTime;
+	private long departureTime;
 	
 	private String sourceAirport;
 	
@@ -70,19 +69,19 @@ public class ScheduledFlightDto {
 		this.flightNumber = flightNumber;
 	}
 
-	public Date getArrivalTime() {
+	public long getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Date arrivalTime) {
+	public void setArrivalTime(long arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Date getDepartureTime() {
+	public long getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(long departureTime) {
 		this.departureTime = departureTime;
 	}
 

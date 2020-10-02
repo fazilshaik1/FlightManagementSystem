@@ -1,6 +1,6 @@
 package com.dxctraining.schedulemodule.entities;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -14,9 +14,9 @@ public class Schedule {
 	@GeneratedValue
 	private Integer scheduleId;
 	
-	private Date arrivalTime;
+	private LocalDateTime arrivalTime;
 	
-	private Date departureTime;
+	private LocalDateTime departureTime;
 	
 	private String sourceAirport;
 	
@@ -28,7 +28,7 @@ public class Schedule {
 		
 	}
 	
-	public Schedule(Date arrivalTime, Date departureTime,String sourceAirport,String destinationAirport, String airportCode) {
+	public Schedule(LocalDateTime arrivalTime, LocalDateTime departureTime,String sourceAirport,String destinationAirport, String airportCode) {
 		this.arrivalTime = arrivalTime;
 		this.departureTime = departureTime;
 		this.sourceAirport = sourceAirport;
@@ -44,19 +44,19 @@ public class Schedule {
 		this.scheduleId = scheduleId;
 	}
 
-	public Date getArrivalTime() {
+	public LocalDateTime getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Date arrivalTime) {
+	public void setArrivalTime(LocalDateTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Date getDepartureTime() {
+	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(LocalDateTime departureTime) {
 		this.departureTime = departureTime;
 	}
 

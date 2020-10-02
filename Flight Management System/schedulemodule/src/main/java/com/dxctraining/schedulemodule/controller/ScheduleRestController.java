@@ -1,5 +1,6 @@
 package com.dxctraining.schedulemodule.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.dxctraining.schedulemodule.dto.CreateScheduleDto;
 import com.dxctraining.schedulemodule.dto.ScheduleDto;
 import com.dxctraining.schedulemodule.entities.Schedule;
 import com.dxctraining.schedulemodule.service.IScheduleService;
+import com.dxctraining.schedulemodule.util.DateUtil;
 import com.dxctraining.schedulemodule.util.ScheduleUtil;
 
 @Validated
@@ -34,24 +36,34 @@ public class ScheduleRestController {
 	private ScheduleUtil util;
 	
 	@Autowired
+	private DateUtil dateUtil;
+	
+	@Autowired
 	private RestTemplate restTemplate;
 	
 	@PostMapping("/add")
 	public ScheduleDto addSchedule(@RequestBody @Valid CreateScheduleDto requestData) {
-		Schedule schedule = new Schedule(requestData.getArrivalTime(),requestData.getDepartureTime(),requestData.getSourceAirport(),requestData.getDestinationAirport(), requestData.getAirportCode());
+		long arrival= requestData.getArrivalTime();
+		long departure = requestData.getDepartureTime();
+		LocalDateTime arrivalTime =dateUtil.toDateTime(arrival);
+		LocalDateTime departureTime = dateUtil.toDateTime(departure);
+		Schedule schedule = new Schedule();
+		schedule.setArrivalTime(arrivalTime);
+		schedule.setDepartureTime(departureTime);
+		schedule.setSourceAirport(requestData.getSourceAirport());
+		schedule.setDestinationAirport(requestData.getDestinationAirport());
+		schedule.setAirportCode(requestData.getAirportCode());
 		schedule = service.save(schedule);
-		schedule.setArrivalTime(requestData.getArrivalTime());
-		schedule.setDepartureTime(requestData.getDepartureTime());
 		AirportDto airportDto = findAirportByAirportId(requestData.getAirportCode());
-		ScheduleDto response =util.scheduleDto(schedule, airportDto.getAirportCode(), airportDto.getAirportName(), airportDto.getAirportLocation());
+		ScheduleDto response = util.scheduleDto(schedule, airportDto);
 		return response;
 	}
 	
-	@GetMapping("get/{scheduleId}")
+	@GetMapping("/get/{scheduleId}")
 	public ScheduleDto findByScheduleId(@PathVariable("scheduleId") Integer scheduleId) {
 		Schedule schedule = service.findByScheduleId(scheduleId);
 		AirportDto airportDto = findAirportByAirportId(schedule.getAirportCode());
-		ScheduleDto response = util.scheduleDto(schedule, airportDto.getAirportCode(), airportDto.getAirportName(), airportDto.getAirportLocation());
+		ScheduleDto response = util.scheduleDto(schedule, airportDto);
 		return response;
 	}
 	
@@ -62,7 +74,7 @@ public class ScheduleRestController {
 		for(Schedule schedule:list) {
 			String airportCode = schedule.getAirportCode();
 			AirportDto airportDto = findAirportByAirportId(airportCode);
-			ScheduleDto dto = util.scheduleDto(schedule, airportCode, airportDto.getAirportName(), airportDto.getAirportLocation());
+			ScheduleDto dto = util.scheduleDto(schedule, airportDto);
 			response.add(dto);
 		}
 		return response;

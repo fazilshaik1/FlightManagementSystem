@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dxctraining.scheduledflightmodule.dao.IScheduledFlightDao;
 import com.dxctraining.scheduledflightmodule.entities.ScheduledFlight;
 import com.dxctraining.scheduledflightmodule.exceptions.InvalidArgumentException;
+import com.dxctraining.scheduledflightmodule.exceptions.ScheduledFlightNotFoundException;
 
 @Transactional
 @Service
@@ -31,7 +32,7 @@ public class ScheduledFlightServiceImpl implements IScheduledFlightService {
 	public ScheduledFlight findBySfId(BigInteger sfId) {
 		Optional<ScheduledFlight> optional = dao.findById(sfId);
 		if(!optional.isPresent()) {
-			throw new InvalidArgumentException("enter valid sfId");
+			throw new ScheduledFlightNotFoundException("enter valid sfId");
 		}
 		ScheduledFlight scheduledFlight = optional.get();
 		return scheduledFlight;
@@ -39,7 +40,7 @@ public class ScheduledFlightServiceImpl implements IScheduledFlightService {
 
 	private void validate(ScheduledFlight scheduledFlight) {
 		if(scheduledFlight == null) {
-			throw new NullPointerException("scheduledFlight should not be null");
+			throw new InvalidArgumentException("scheduledFlight should not be null");
 		}
 		
 	}
@@ -53,12 +54,10 @@ public class ScheduledFlightServiceImpl implements IScheduledFlightService {
 
 	@Override
 	public void deleteScheduledFlight(BigInteger sfId) {
-		if(dao.existsById(sfId)) {
-			dao.deleteById(sfId);
-		}else {
-			throw new InvalidArgumentException("There is no scheduledFlight, enter valid sfId");
+		if(!dao.existsById(sfId)) {
+			throw new ScheduledFlightNotFoundException("There is no such scheduledFlight, enter valid sfId");
 		}
-		
+		dao.deleteById(sfId);
 	}
 
 }

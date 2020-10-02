@@ -1,48 +1,35 @@
 package com.dxctraining.schedulemodule.dto;
 
-import java.util.Date;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.validation.constraints.NotBlank;
 
 public class CreateScheduleDto {
 	
-	@NotNull
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd/mm/yyyy")
-	private Date arrivalTime;
+	private long arrivalTime;
 	
-	@NotNull
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd/mm/yyyy")
-	private Date departureTime;
+	private long departureTime;
 	
-	@NotEmpty
+	@NotBlank
 	private String sourceAirport;
 	
-	@NotEmpty
+	@NotBlank
 	private String destinationAirport;
 	
-	@NotNull
+	@NotBlank
 	private String airportCode;
 
-	public Date getArrivalTime() {
+	public long getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Date arrivalTime) {
+	public void setArrivalTime(long arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Date getDepartureTime() {
+	public long getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(long departureTime) {
 		this.departureTime = departureTime;
 	}
 

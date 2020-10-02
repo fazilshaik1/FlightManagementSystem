@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dxctraining.schedulemodule.dao.IScheduleDao;
 import com.dxctraining.schedulemodule.entities.Schedule;
 import com.dxctraining.schedulemodule.exceptions.InvalidArgumentException;
+import com.dxctraining.schedulemodule.exceptions.ScheduleNotFoundException;
 
 @Transactional
 @Service
@@ -27,7 +28,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 
 	private void validate(Schedule schedule) {
 		if(schedule == null) {
-			throw new NullPointerException("schedule should not be null");
+			throw new InvalidArgumentException("schedule should not be null");
 		}
 		
 	}
@@ -42,7 +43,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 	public Schedule findByScheduleId(Integer scheduleId) {
 		Optional<Schedule> optional = dao.findById(scheduleId);
 		if(!optional.isPresent()) {
-			throw new InvalidArgumentException("Schedule Not found for entered Id,Enter valid scheduleId");
+			throw new ScheduleNotFoundException("Schedule Not found for entered Id,Enter valid scheduleId");
 		}
 		Schedule schedule =optional.get();
 		return schedule;
@@ -50,12 +51,10 @@ public class ScheduleServiceImpl implements IScheduleService {
 
 	@Override
 	public void deleteSchedule(Integer scheduleId) {
-		if(dao.existsById(scheduleId)) {
-			dao.deleteById(scheduleId);
-		}else {
-			throw new InvalidArgumentException("there is no such schedule, enter valid scheduleId");
+		if(!dao.existsById(scheduleId)) {
+			throw new ScheduleNotFoundException("there is no such schedule, enter valid scheduleId");
 		}
-		
+		dao.deleteById(scheduleId);
 	}
 
 }
