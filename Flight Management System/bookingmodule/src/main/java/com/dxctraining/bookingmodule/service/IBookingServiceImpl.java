@@ -28,10 +28,10 @@ public class IBookingServiceImpl implements IBookingService {
 	}
 
 	@Override
-	public Booking viewByBookingId(BigInteger bookingId) {
+	public Booking findByBookingId(BigInteger bookingId) {
 		Optional<Booking> optional = dao.findById(bookingId);
 		if(!optional.isPresent()) {
-			throw new BookingNotFoundException("provide valid bookingId");
+			throw new BookingNotFoundException("No bookings found with entered bookingId, provide valid bookingId");
 		}
 		Booking booking = optional.get();
 		return booking;
@@ -45,9 +45,7 @@ public class IBookingServiceImpl implements IBookingService {
 
 	@Override
 	public void deleteBooking(BigInteger bookingId) {
-		if(!dao.existsById(bookingId)) {
-			throw new BookingNotFoundException("provide valid bookingId");
-		}
+		findByBookingId(bookingId);
 		dao.deleteById(bookingId);
 	}
 

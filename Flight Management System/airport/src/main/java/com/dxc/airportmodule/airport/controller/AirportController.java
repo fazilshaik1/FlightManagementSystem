@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dxc.airportmodule.airport.dto.AirportDto;
 import com.dxc.airportmodule.airport.dto.CreateAirportRequest;
 import com.dxc.airportmodule.airport.entity.Airport;
-import com.dxc.airportmodule.airport.exception.InvalidArgumentException;
 import com.dxc.airportmodule.airport.service.IAirportService;
 
 @RestController
@@ -40,15 +39,15 @@ public class AirportController {
 	}
 
 	@GetMapping("/get/{airportCode}")
-	public AirportDto viewAirport(@PathVariable("airportCode") String airportCode) {
-		Airport airport = service.viewAirportByCode(airportCode);
+	public AirportDto getAirportByCode(@PathVariable("airportCode") String airportCode) {
+		Airport airport = service.findAirportByCode(airportCode);
 		AirportDto response = toDto(airport);
 		return response;
 	}
 
 	@GetMapping("/get/all")
 	public List<AirportDto> getAllAirports() {
-		List<Airport> list = service.viewAllAirports();
+		List<Airport> list = service.findAllAirports();
 		List<AirportDto> response = new ArrayList<>();
 		for (Airport airport : list) {
 			AirportDto dto = toDto(airport);
@@ -58,12 +57,8 @@ public class AirportController {
 	}
 
 	@DeleteMapping("/delete/{airportCode}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("airportCode") String airportCode) {
 		service.deleteAirport(airportCode);
-		if (airportCode==null) {
-			throw new InvalidArgumentException("Delete unsuccessfull. Please provide the correct code");
-		}
 	}
 
 	public AirportDto toDto(Airport airport) {

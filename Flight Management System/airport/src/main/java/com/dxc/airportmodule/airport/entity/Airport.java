@@ -62,7 +62,7 @@ public class Airport {
 		}
 
 		Airport that = (Airport) obj;
-		return this.airportCode.equals(airportCode);
+		return this.airportCode.equals(that.airportCode);
 	}
 
 }

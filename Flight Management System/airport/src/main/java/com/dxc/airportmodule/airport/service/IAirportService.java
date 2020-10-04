@@ -8,9 +8,9 @@ public interface IAirportService {
 
 	 Airport addAirport(Airport airport);
 	
-	 boolean deleteAirport(String airportCode);
+	 void deleteAirport(String airportCode);
 	
-	 List<Airport> viewAllAirports();
+	 List<Airport> findAllAirports();
 	
-	 Airport viewAirportByCode(String airportCode);
+	 Airport findAirportByCode(String airportCode);
 }

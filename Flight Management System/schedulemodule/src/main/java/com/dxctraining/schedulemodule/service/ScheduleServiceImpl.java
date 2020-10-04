@@ -51,9 +51,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 
 	@Override
 	public void deleteSchedule(Integer scheduleId) {
-		if(!dao.existsById(scheduleId)) {
-			throw new ScheduleNotFoundException("there is no such schedule, enter valid scheduleId");
-		}
+		findByScheduleId(scheduleId);
 		dao.deleteById(scheduleId);
 	}
 

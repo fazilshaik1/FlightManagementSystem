@@ -32,7 +32,7 @@ public class ScheduledFlightServiceImpl implements IScheduledFlightService {
 	public ScheduledFlight findBySfId(BigInteger sfId) {
 		Optional<ScheduledFlight> optional = dao.findById(sfId);
 		if(!optional.isPresent()) {
-			throw new ScheduledFlightNotFoundException("enter valid sfId");
+			throw new ScheduledFlightNotFoundException("scheduled flight not found for entered sfId,enter valid sfId");
 		}
 		ScheduledFlight scheduledFlight = optional.get();
 		return scheduledFlight;
@@ -54,9 +54,7 @@ public class ScheduledFlightServiceImpl implements IScheduledFlightService {
 
 	@Override
 	public void deleteScheduledFlight(BigInteger sfId) {
-		if(!dao.existsById(sfId)) {
-			throw new ScheduledFlightNotFoundException("There is no such scheduledFlight, enter valid sfId");
-		}
+		findBySfId(sfId);
 		dao.deleteById(sfId);
 	}
 

@@ -11,9 +11,9 @@ public interface IFlightService {
 	
 	Flight modifyFlight(Flight flight);
 	
-	Flight viewFlightByFlightNumber(BigInteger flightNumber);
+	Flight findFlightByFlightNumber(BigInteger flightNumber);
 	
-	List<Flight> viewAllFlights();
+	List<Flight> findAllFlights();
 	
 	void deleteFlight(BigInteger flightNumber);
 	

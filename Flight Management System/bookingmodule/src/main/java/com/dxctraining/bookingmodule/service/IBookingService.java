@@ -9,7 +9,7 @@ public interface IBookingService {
 
 	Booking addBooking(Booking booking);
 
-	Booking viewByBookingId(BigInteger bookingId);
+	Booking findByBookingId(BigInteger bookingId);
 
 	List<Booking> viewAllBookings();
 

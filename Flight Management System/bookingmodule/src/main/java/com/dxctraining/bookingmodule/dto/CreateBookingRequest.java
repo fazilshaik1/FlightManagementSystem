@@ -1,12 +1,6 @@
 package com.dxctraining.bookingmodule.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigInteger;
-import java.util.Date;
-import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -17,10 +11,7 @@ public class CreateBookingRequest {
 	@NotNull
 	private Integer userId;
 	
-	@NotNull
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date bookingDate;
+	private long bookingDate;
 	
 	private double ticketCost;
 	
@@ -46,11 +37,11 @@ public class CreateBookingRequest {
 		this.userId = userId;
 	}
 
-	public Date getBookingDate() {
+	public long getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(Date bookingDate) {
+	public void setBookingDate(long bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 

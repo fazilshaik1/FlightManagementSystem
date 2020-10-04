@@ -1,7 +1,8 @@
 package com.dxctraining.bookingmodule.entities;
 
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ public class Booking {
 
 	private Integer userId;
 	
-	private Date bookingDate;
+	private LocalDateTime bookingDate;
 
 	private double ticketCost;
 	
@@ -28,7 +29,7 @@ public class Booking {
 
 	}
 
-	public Booking(Integer userId, Date bookingDate, double ticketCost, long pnrNumber,BigInteger sfId ) {
+	public Booking(Integer userId, LocalDateTime bookingDate, double ticketCost, long pnrNumber,BigInteger sfId ) {
 		this.userId = userId;
 		this.bookingDate = bookingDate;
 		this.ticketCost = ticketCost;
@@ -52,11 +53,11 @@ public class Booking {
 		this.userId = userId;
 	}
 
-	public Date getBookingDate() {
+	public LocalDateTime getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(Date bookingDate) {
+	public void setBookingDate(LocalDateTime bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
@@ -82,5 +83,20 @@ public class Booking {
 
 	public void setSfId(BigInteger sfId) {
 		this.sfId = sfId;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null || getClass()!= o.getClass()) {
+			return false;
+		}
+		Booking booking =(Booking)o;
+		return Objects.equals(bookingId, booking.getBookingId());
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookingId);
 	}
 }

@@ -1,7 +1,6 @@
 package com.dxctraining.bookingmodule.dto;
 
 import java.math.BigInteger;
-import java.util.Date;
 
 public class BookingDto {
 	
@@ -9,7 +8,7 @@ public class BookingDto {
 
 	private Integer userId;
 
-	private Date bookingDate;
+	private long bookingDate;
 
 	private double ticketCost;
 
@@ -17,15 +16,11 @@ public class BookingDto {
 
 	private BigInteger sfId;
 	
-	private String userType;
-	
 	private String userName;
 	
 	private String email;
 	
 	private Long userPhone;
-	
-	private String password;
 	
 	private String passengerName;
 	
@@ -37,15 +32,13 @@ public class BookingDto {
 	
 	private Integer availableSeats;
 	
-	private Integer scheduleId;
-	
 	private BigInteger flightNumber;
 	
 	public BookingDto() {
 		
 	}
 
-	public BookingDto(BigInteger bookingId,Date bookingDate, double ticketCost) {
+	public BookingDto(BigInteger bookingId,long bookingDate, double ticketCost) {
 		this.bookingId = bookingId;
 		this.bookingDate = bookingDate;
 		this.ticketCost = ticketCost;
@@ -67,11 +60,11 @@ public class BookingDto {
 		this.userId = userId;
 	}
 
-	public Date getBookingDate() {
+	public long getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(Date bookingDate) {
+	public void setBookingDate(long bookingDate) {
 		this.bookingDate = bookingDate;
 	}
 
@@ -99,14 +92,6 @@ public class BookingDto {
 		this.sfId = sfId;
 	}
 
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-
 	public String getUserName() {
 		return userName;
 	}
@@ -129,14 +114,6 @@ public class BookingDto {
 
 	public void setUserPhone(Long userPhone) {
 		this.userPhone = userPhone;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getPassengerName() {
@@ -177,14 +154,6 @@ public class BookingDto {
 
 	public void setAvailableSeats(Integer availableSeats) {
 		this.availableSeats = availableSeats;
-	}
-
-	public Integer getScheduleId() {
-		return scheduleId;
-	}
-
-	public void setScheduleId(Integer scheduleId) {
-		this.scheduleId = scheduleId;
 	}
 
 	public BigInteger getFlightNumber() {

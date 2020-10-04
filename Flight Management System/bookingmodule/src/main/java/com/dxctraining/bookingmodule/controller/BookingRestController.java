@@ -1,6 +1,7 @@
 package com.dxctraining.bookingmodule.controller;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,8 @@ import com.dxctraining.bookingmodule.dto.UserDto;
 import com.dxctraining.bookingmodule.entities.Booking;
 import com.dxctraining.bookingmodule.service.IBookingService;
 import com.dxctraining.bookingmodule.util.BookingUtil;
+import com.dxctraining.bookingmodule.util.DateUtil;
+
 import org.springframework.web.client.RestTemplate;
 
 @Validated
@@ -38,6 +41,9 @@ public class BookingRestController {
 
 	@Autowired
 	private BookingUtil util;
+	
+	@Autowired
+	private DateUtil dateUtil;
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -45,24 +51,25 @@ public class BookingRestController {
 	@PostMapping("/add")
 	@ResponseStatus(HttpStatus.CREATED)
 	public BookingDto createBooking(@RequestBody @Valid CreateBookingRequest req) {
-		Booking booking = new Booking(req.getUserId(),req.getBookingDate(),req.getTicketCost(),req.getPnrNumber(),req.getSfId());
+		long bookingDateMillis = req.getBookingDate();
+		LocalDateTime bookingDate = dateUtil.toDateTime(bookingDateMillis);
+		Booking booking = new Booking(req.getUserId(),bookingDate,req.getTicketCost(),req.getPnrNumber(),req.getSfId());
 		booking = service.addBooking(booking);
 		UserDto userDto = findUserDetailsByUserId(req.getUserId());
 		PassengerDto passDto = findPassengerDetailsByPnrNum(req.getPnrNumber());
 		ScheduledFlightDto sfDto = findScheduledFlightBySfId(req.getSfId());
-		BookingDto response = util.bookingDto(booking, userDto.getUserId(), userDto.getUserType(), userDto.getUserName(), userDto.getEmail(), userDto.getUserPhone(), userDto.getPassword(), passDto.getPnrNumber(), passDto.getPassengerName(), passDto.getPassengerAge(), passDto.getPassengerUIN(), passDto.getGender(), sfDto.getSfId(), sfDto.getAvailableSeats(), sfDto.getScheduleId(), sfDto.getFlightNumber());
+		BookingDto response = util.bookingDto(booking, userDto, passDto, sfDto);
 		return response;
-
 	}
 	
 	@GetMapping("/get/{bookingId}")
 	@ResponseStatus(HttpStatus.OK)
 	public BookingDto findBookingByBookingId(@PathVariable("bookingId") BigInteger bookingId) {
-		Booking booking = service.viewByBookingId(bookingId);
+		Booking booking = service.findByBookingId(bookingId);
 		UserDto userDto = findUserDetailsByUserId(booking.getUserId());
 		PassengerDto passDto = findPassengerDetailsByPnrNum(booking.getPnrNumber());
 		ScheduledFlightDto sfDto = findScheduledFlightBySfId(booking.getSfId());
-		BookingDto response = util.bookingDto(booking, userDto.getUserId(), userDto.getUserType(), userDto.getUserName(), userDto.getEmail(), userDto.getUserPhone(), userDto.getPassword(), passDto.getPnrNumber(), passDto.getPassengerName(), passDto.getPassengerAge(), passDto.getPassengerUIN(), passDto.getGender(), sfDto.getSfId(), sfDto.getAvailableSeats(), sfDto.getScheduleId(), sfDto.getFlightNumber());
+		BookingDto response = util.bookingDto(booking, userDto, passDto, sfDto);
 		return response;
 	}
 	
@@ -75,7 +82,7 @@ public class BookingRestController {
 			UserDto userDto = findUserDetailsByUserId(booking.getUserId());
 			PassengerDto passDto = findPassengerDetailsByPnrNum(booking.getPnrNumber());
 			ScheduledFlightDto sfDto = findScheduledFlightBySfId(booking.getSfId());
-			BookingDto dto = util.bookingDto(booking, userDto.getUserId(), userDto.getUserType(), userDto.getUserName(), userDto.getEmail(), userDto.getUserPhone(), userDto.getPassword(), passDto.getPnrNumber(), passDto.getPassengerName(), passDto.getPassengerAge(), passDto.getPassengerUIN(), passDto.getGender(), sfDto.getSfId(), sfDto.getAvailableSeats(), sfDto.getScheduleId(), sfDto.getFlightNumber());
+			BookingDto dto = util.bookingDto(booking, userDto, passDto, sfDto);
 			response.add(dto);
 		}
 		return response;

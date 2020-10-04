@@ -1,6 +1,7 @@
 package com.dxctraining.scheduledflightmodule.entities;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,6 +60,21 @@ public class ScheduledFlight {
 
 	public void setFlightNumber(BigInteger flightNumber) {
 		this.flightNumber = flightNumber;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(this == o) return true;
+		if(o == null || getClass()!= o.getClass()) {
+			return false;
+		}
+		ScheduledFlight scheduledFlight =(ScheduledFlight)o;
+		return Objects.equals(sfId, scheduledFlight.getSfId());
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(sfId);
 	}
 
 }

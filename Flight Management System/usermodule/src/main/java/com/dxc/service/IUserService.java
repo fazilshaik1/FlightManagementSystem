@@ -7,9 +7,9 @@ import com.dxc.entities.User;
 public interface IUserService {
 	public User addUser(User user);
 
-	public User viewUserById(int userId);
+	public User findUserById(int userId);
 
-	public List<User> viewUser();
+	public List<User> allUsers();
 
 	public void deleteUser(int userId);
 	

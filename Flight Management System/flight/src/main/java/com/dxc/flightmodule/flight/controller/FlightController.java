@@ -27,55 +27,55 @@ public class FlightController {
 
 	@Autowired
 	private IFlightService service;
-	
+
 	@PostMapping("/add")
 	@ResponseStatus(HttpStatus.CREATED)
 	public FlightDto create(@RequestBody CreateFlightRequest request) {
-		Flight flight=new Flight();
+		Flight flight = new Flight();
 		flight.setFlightModel(request.getFlightModel());
 		flight.setCarrierName(request.getCarrierName());
 		flight.setSeatCapacity(request.getSeatCapacity());
-		flight=service.addFlight(flight);
-		FlightDto response=toDto(flight);
+		flight = service.addFlight(flight);
+		FlightDto response = toDto(flight);
 		return response;
 	}
-	
+
 	@GetMapping("/get/{flightNumber}")
-	public FlightDto viewFlight(@PathVariable("flightNumber") BigInteger flightNumber ) {
-		Flight flight=service.viewFlightByFlightNumber(flightNumber);
-		FlightDto response=toDto(flight);
+	public FlightDto viewFlight(@PathVariable("flightNumber") BigInteger flightNumber) {
+		Flight flight = service.findFlightByFlightNumber(flightNumber);
+		FlightDto response = toDto(flight);
 		return response;
 	}
-	
+
 	@GetMapping("/get/all")
-	public List<FlightDto> getAllFlights(){
-		List<Flight> list=service.viewAllFlights();
-		List<FlightDto> response=new ArrayList<>();
-		for(Flight flight:list) {
-			FlightDto dto=toDto(flight);
+	public List<FlightDto> getAllFlights() {
+		List<Flight> list = service.findAllFlights();
+		List<FlightDto> response = new ArrayList<>();
+		for (Flight flight : list) {
+			FlightDto dto = toDto(flight);
 			response.add(dto);
 		}
 		return response;
 	}
-	
+
 	@PutMapping("/update")
-	public Flight modify(  @RequestBody Flight flightToUpdate) {
-		Flight flight= service.modifyFlight(flightToUpdate);
-			return flight;
+	public Flight modify(@RequestBody Flight flightToUpdate) {
+		Flight flight = service.modifyFlight(flightToUpdate);
+		return flight;
 	}
-	
+
 	@DeleteMapping("/delete/{flightNumber}")
 	public void delete(@PathVariable("flightNumber") BigInteger flightNumber) {
 		service.deleteFlight(flightNumber);
 	}
-	
+
 	public FlightDto toDto(Flight flight) {
-		FlightDto dto=new FlightDto();
+		FlightDto dto = new FlightDto();
 		dto.setFlightNumber(flight.getFlightNumber());
 		dto.setFlightModel(flight.getFlightModel());
 		dto.setCarrierName(flight.getCarrierName());
 		dto.setSeatCapacity(flight.getSeatCapacity());
 		return dto;
 	}
-	
+
 }

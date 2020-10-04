@@ -18,6 +18,7 @@ public class FlightServiceImpl implements IFlightService {
 	@Autowired
 	private IFlightDao dao;
 
+	
 	@Override
 	public Flight addFlight(Flight flight) {
 		validateFlight(flight);
@@ -27,19 +28,17 @@ public class FlightServiceImpl implements IFlightService {
 	@Override
 	public Flight modifyFlight(Flight flight) {
 		validateFlight(flight);
-		if (dao.findById(flight.getFlightNumber()).isPresent()) 
-		{	
-			Flight tempFlight = dao.findById(flight.getFlightNumber()).get();
-			tempFlight.setFlightModel(flight.getFlightModel());
-			tempFlight.setSeatCapacity(flight.getSeatCapacity());
-			dao.save(tempFlight);
-			System.out.println("Update successful");
-		}
-		return null;
+		Flight tempFlight = findFlightByFlightNumber(flight.getFlightNumber());
+		tempFlight.setFlightModel(flight.getFlightModel());
+		tempFlight.setSeatCapacity(flight.getSeatCapacity());
+		tempFlight.setCarrierName(flight.getCarrierName());
+		dao.save(tempFlight);
+		System.out.println("Update successful");
+		return tempFlight;
 	}
 
 	@Override
-	public Flight viewFlightByFlightNumber(BigInteger flightNumber) {
+	public Flight findFlightByFlightNumber(BigInteger flightNumber) {
 		Optional<Flight> optional = dao.findById(flightNumber);
 		if (!optional.isPresent()) {
 			throw new FlightNotFoundException("Flight not found for entered number. Please provide correct number");
@@ -49,19 +48,15 @@ public class FlightServiceImpl implements IFlightService {
 	}
 
 	@Override
-	public List<Flight> viewAllFlights() {
+	public List<Flight> findAllFlights() {
 		List<Flight> allFlights = dao.findAll();
 		return allFlights;
 	}
 
 	@Override
 	public void deleteFlight(BigInteger flightNumber) {
-		if (dao.existsById(flightNumber)) {
-
-			dao.deleteById(flightNumber);
-		} else {
-			throw new FlightNotFoundException("Enterd flight number is wrong. Please provide correct number");
-		}
+		Flight flight = findFlightByFlightNumber(flightNumber);
+		dao.delete(flight);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.dxc.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,11 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dxc.dto.CreateUserRequest;
 import com.dxc.dto.UserDto;
 import com.dxc.entities.User;
-import com.dxc.exceptions.UserNotFoundException;
 import com.dxc.service.IUserService;
 import com.dxc.util.UserUtil;
-
-
 
 @RestController
 @RequestMapping("/users")
@@ -31,7 +29,7 @@ public class UserRestController {
 	@Autowired
 	private UserUtil userUtil;
 
-	@PostMapping(value = "/addUser")
+	@PostMapping("/add")
 	public UserDto create(@Valid @RequestBody CreateUserRequest data) {
 		String userName = data.getUserName();
 		String userType = data.getUserType();
@@ -47,29 +45,27 @@ public class UserRestController {
 
 	@GetMapping("/get/{userId}")
 	public UserDto findUserById(@PathVariable("userId") int userId) {
-		User user = userService.viewUserById(userId);
-		if(user==null) {
-			throw new UserNotFoundException("enter valid id");
-		}
+		User user = userService.findUserById(userId);
 		UserDto response = userUtil.userDto(user);
 		return response;
-		
 
 	}
 
-	@GetMapping("/viewall")
-	public List<User> viewUser() {
-		return userService.viewUser();
+	@GetMapping("/all")
+	public List<UserDto> findAllUsers() {
+		List<User>list = userService.allUsers();
+		List<UserDto>response=new ArrayList<>();
+		for(User user:list) {
+			UserDto dto = userUtil.userDto(user);
+			response.add(dto);
+		}
+		return response;
 	}
 
 	@DeleteMapping("/delete/{userId}")
 	public void deleteUserById(@PathVariable("userId") int userId) {
-		try {
-			userService.deleteUser(userId);
-			System.out.println("deleted successfully");
-		} catch (Exception e) {
-			System.out.println("user id not found");
-		}
+		userService.deleteUser(userId);
+
 	}
 
 }

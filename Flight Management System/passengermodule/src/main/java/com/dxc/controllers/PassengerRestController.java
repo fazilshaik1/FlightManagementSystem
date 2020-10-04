@@ -1,5 +1,6 @@
 package com.dxc.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dxc.dto.CreatePassengerRequest;
 import com.dxc.dto.PassengerDto;
 import com.dxc.entities.Passenger;
-import com.dxc.exceptions.PassengerNotFoundException;
 import com.dxc.service.IPassengerService;
 import com.dxc.util.PassengerUtil;
 
@@ -25,11 +25,11 @@ import com.dxc.util.PassengerUtil;
 @RequestMapping("/passengers")
 public class PassengerRestController {
 	@Autowired
-	IPassengerService passengerService;
+	private IPassengerService passengerService;
 	@Autowired
 	private PassengerUtil passengerUtil;
 
-	@PostMapping(value = "/addPassenger")
+	@PostMapping("/add")
 	public PassengerDto create(@Valid @RequestBody CreatePassengerRequest data) {
 		String passengerName = data.getPassengerName();
 		int passengerAge = data.getPassengerAge();
@@ -43,28 +43,27 @@ public class PassengerRestController {
 
 	@GetMapping("/get/{pnrNumber}")
 	public PassengerDto findPassengerByNumber(@PathVariable("pnrNumber") long pnrNumber) {
-		Passenger passenger = passengerService.getPassenger(pnrNumber);
-		if (passenger == null) {
-			throw new PassengerNotFoundException("enter valid number");
-		}
+		Passenger passenger = passengerService.findPassengerById(pnrNumber);
 		PassengerDto response = passengerUtil.passengerDto(passenger);
 		return response;
 
 	}
 
-	@GetMapping("/passengerList")
-	public List<Passenger> viewAllPassengers() {
-		return passengerService.viewAllPassengers();
+	@GetMapping("/all")
+	public List<PassengerDto> findAllPassengers() {
+		List<Passenger>list=passengerService.findAllPassengers();
+		List<PassengerDto>response= new ArrayList<>();
+		for(Passenger passenger:list) {
+			PassengerDto dto = passengerUtil.passengerDto(passenger);
+			response.add(dto);
+		}
+		return response;
 	}
 
 	@DeleteMapping("/delete/{pnrNumber}")
 	public void deletePassengerBypnrNumber(@PathVariable("pnrNumber") long pnrNumber) {
-		try {
 			passengerService.deletePassenger(pnrNumber);
-			System.out.println("deleted successfully");
-		} catch (Exception e) {
-			System.out.println(" pnrNumber not found");
-		}
+			
 	}
 
 }

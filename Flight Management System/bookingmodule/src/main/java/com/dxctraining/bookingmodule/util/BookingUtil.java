@@ -1,32 +1,45 @@
 package com.dxctraining.bookingmodule.util;
 
 import com.dxctraining.bookingmodule.dto.BookingDto;
+import com.dxctraining.bookingmodule.dto.PassengerDto;
+import com.dxctraining.bookingmodule.dto.ScheduledFlightDto;
+import com.dxctraining.bookingmodule.dto.UserDto;
 import com.dxctraining.bookingmodule.entities.Booking;
 
-import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class BookingUtil {
-
-	public BookingDto bookingDto(Booking booking,Integer userId,String userType, String userName, String email, Long userPhone, String password,Long pnrNumber, String passengerName,int passengerAge,long passengerUIN,char gender, BigInteger sfId,Integer availableSeats,Integer scheduleId,BigInteger flightNumber) {
-		BookingDto dto = new BookingDto(booking.getBookingId(),booking.getBookingDate(), booking.getTicketCost());
-		dto.setUserId(userId);
-		dto.setUserType(userType);
-		dto.setUserName(userName);
-		dto.setEmail(email);
-		dto.setUserPhone(userPhone);
-		dto.setPassword(password);
-		dto.setPnrNumber(pnrNumber);
-		dto.setPassengerName(passengerName);
-		dto.setPassengerAge(passengerAge);
-		dto.setPassengerUIN(passengerUIN);
-		dto.setGender(gender);
-		dto.setSfId(sfId);
-		dto.setAvailableSeats(availableSeats);
-		dto.setScheduleId(scheduleId);
-		dto.setFlightNumber(flightNumber);
+	
+	public BookingDto bookingDto(Booking booking,UserDto userDto,PassengerDto passengerDto,ScheduledFlightDto sfDto) {
+		BookingDto dto = new BookingDto();
+		dto.setBookingId(booking.getBookingId());
+		LocalDateTime bookingDate = booking.getBookingDate();
+		long millis = toMillis(bookingDate);
+		dto.setBookingDate(millis);
+		dto.setTicketCost(booking.getTicketCost());
+		dto.setUserId(userDto.getUserId());
+		dto.setUserName(userDto.getUserName());
+		dto.setEmail(userDto.getEmail());
+		dto.setUserPhone(userDto.getUserPhone());
+		dto.setPnrNumber(passengerDto.getPnrNumber());
+		dto.setPassengerName(passengerDto.getPassengerName());
+		dto.setPassengerAge(passengerDto.getPassengerAge());
+		dto.setPassengerUIN(passengerDto.getPassengerUIN());
+		dto.setGender(passengerDto.getGender());
+		dto.setSfId(sfDto.getSfId());
+		dto.setAvailableSeats(sfDto.getAvailableSeats());
+		dto.setFlightNumber(sfDto.getFlightNumber());
 		return dto;
 	}
+	
+	 long toMillis(LocalDateTime dateTime){
+	        ZonedDateTime zonedDateTime=ZonedDateTime.of(dateTime, ZoneId.systemDefault());
+	       long millis= zonedDateTime.toInstant().toEpochMilli();
+	       return millis;
+	    }
 }

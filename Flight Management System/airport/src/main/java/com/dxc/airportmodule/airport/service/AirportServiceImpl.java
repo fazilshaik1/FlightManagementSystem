@@ -20,38 +20,25 @@ public class AirportServiceImpl implements IAirportService {
 	@Autowired
 	private IAirportDao dao;
 
+	/*
+	 * addAirport() method is used to add an airport to the database, by returning the airport
+	 */
 	@Override
 	public Airport addAirport(Airport airport) {
-		// String airportCode = generateAirportCode(alphaNum);
-		airport.setAirportCode(generateAirportCode(alphaNum));
+		String newId = generateAirportCode();
+		airport.setAirportCode(newId);
 		if (dao.existsById(airport.getAirportCode())) {
 			throw new InvalidArgumentException("Airport already exists for the mentioned details");
 		}
-
 		airport = dao.save(airport);
 		return airport;
 	}
 
+	/*
+	 * findAirportByCode() will fetch the details of one airport by passing the airportCode
+	 */
 	@Override
-	public boolean deleteAirport(String airportCode) {
-		if (dao.existsById(airportCode)) {
-			
-			dao.deleteById(airportCode);
-		}else {
-			throw new AirportNotFoundException("Airport not found. Please enter the correct Airport code");
-		}
-		
-		return true;
-	}
-
-	@Override
-	public List<Airport> viewAllAirports() {
-		List<Airport> allAirports = dao.findAll();
-		return allAirports;
-	}
-
-	@Override
-	public Airport viewAirportByCode(String airportCode) {
+	public Airport findAirportByCode(String airportCode) {
 		Optional<Airport> optional = dao.findById(airportCode);
 		if (!optional.isPresent()) {
 			throw new AirportNotFoundException("Airport not found");
@@ -61,14 +48,35 @@ public class AirportServiceImpl implements IAirportService {
 		return airport;
 	}
 
-	String alphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"; // 36 letter.
+	/*
+	 * findAllAirports() method will fetch the list of all airport and its details
+	 */
+	@Override
+	public List<Airport> findAllAirports() {
+		List<Airport> allAirports = dao.findAll();
+		return allAirports;
+	}
 
-	private static String generateAirportCode(String alphaNum) {
+	/*
+	 * deleteAirport() method will delete an airport and its details from database
+	 */
+	@Override
+	public void deleteAirport(String airportCode) {
+		Airport airport = findAirportByCode(airportCode);
+		dao.delete(airport);
+	}
+
+	/*
+	 * generateAirportCode() method is used to generate a string for airport code, 
+	 * the method is called during addAirport() method
+	 */
+	
+	private static String generateAirportCode() {
 		Random random = new Random();
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < 7; i++) {
-			int randIndex = random.nextInt(alphaNum.length());
-			sb.append(alphaNum.charAt(randIndex));
+		for (int i = 0; i < 4; i++) {
+			int  number = random.nextInt(100);
+			sb.append(number);
 		}
 		return sb.toString();
 
