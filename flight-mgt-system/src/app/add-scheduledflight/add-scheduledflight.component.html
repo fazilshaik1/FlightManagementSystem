@@ -27,28 +27,32 @@
     <input type="submit" value="Submit"  class="btn btn-primary">    
     </div>
     </form>
-        <br>
+
+<!---
+<form #myform=ngForm (ngSubmit)="addScheduledFlight(myform)">
+    <div>
+    <input type="number" ngModel name="availableSeats">
+    </div>
+
+    <div>    
+    <input type="number" ngModel name="scheduleId">
+    </div>
+
+    <div>    
+    <input type="number" ngModel name="flightNumber">
+    </div>
+
+    <div>    
+    <input type="submit" value="Submit">
+    </div>
+  </form>
+--->
+    <div *ngIf="scheduledflight!==undefined">
+      <h2>Added scheduled flight is </h2>
+      sfId is {{scheduledflight.sfId}}
+      availableSeats is {{scheduledflight.availableSeats}}
+      scheduleId is {{scheduledflight.scheduleId}}
+      flightNumber is {{scheduledflight.flightNumber}}
+  </div>
         
-        <div class ="container" *ngIf="scheduledflight!==undefined">
-         <h3>Scheduledflight Added </h3>   
-         <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">S.No</th>
-                <th scope="col">sfId</th>
-                <th scope="col">Available Seats</th>
-                <th scope="col">ScheduleId</th>
-                <th scope="col">FlightNumber</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>{{scheduledflight.sfId}}</td>
-                <td>{{scheduledflight.availableSeats}}</td>
-                <td>{{scheduledflight.scheduleId}}</td>
-                <td>{{scheduledflight.flightNumber}}</td>
-              </tr>
-              </tbody>
-              </table>
-        </div>
+       

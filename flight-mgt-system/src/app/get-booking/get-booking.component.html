@@ -15,17 +15,19 @@
 
 <div *ngIf="booking!==undefined">
   
-  
-Booking id is {{booking.bookingId }}
-<br>
-User id is {{booking.userId}}     
-<br>
-date is {{booking.bookingDate}}
-<br>
-Ticket cost is {{booking.ticketCost}}
-<br>
-PNR number is {{booking.pnrNumber}}
-<br>
-SF id is {{booking.sfId}}
-<br>
-
+  <ul style="position:relative;margin-top:75px">
+<li>Booking id is {{booking.bookingId }}</li>
+<li>User id is {{booking.userId}}  </li>   
+<li>date is {{booking.bookingDate}}</li>
+<li>Ticket cost is {{booking.ticketCost}}</li>
+<li>PNR number is {{booking.pnrNumber}}</li>
+<li>SF id is {{booking.sfId}}</li>
+<li>User Name is {{booking.userName}}</li>
+<li>Email is {{booking.email}}</li>
+<li>Phone Number is {{booking.userPhone}}</li>
+<li>Passenger Name is {{booking.passengerName}}</li>
+<li>Age is {{booking.passengerAge}}</li>
+<li>UIN is {{booking.passengerUIN}}</li>
+<li>Gender is {{booking.gender}}</li>
+<li>Flight Number is {{booking.flightNumber}}</li>
+</ul>

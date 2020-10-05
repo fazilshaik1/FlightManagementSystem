@@ -1,28 +1,42 @@
-<p>all-booking works!</p>
+
 
 <div class="container">
     <table class="table" >
       <thead class="thead-light" style="margin-top: 500px;">
         <tr>
-          <th scope="col">S.No</th>
         <th>Booking Id</th>
         <th>User Id</th>
         <th>Booking Date</th>
         <th>Ticket Cost</th>
         <th>PNR Number</th>
         <th>Sf Id</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">passenger Name</th>
+        <th scope="col">Passenger Age</th>
+        <th scope="col">passenger UIN</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Flight Number</th>
        </tr>
       </thead>
 
       <tbody>
         <tr *ngFor="let booking of bookings">
-          <th scope="row">1</th>
           <td>{{booking.bookingId}}</td>
           <td>{{booking.userId}}</td>      
           <td>{{booking.bookingDate}}</td>
           <td>{{booking.ticketCost}}</td>
           <td>{{booking.pnrNumber}}</td>
           <td>{{booking.sfId}}</td>
+          <td>{{booking.userName}}</td>
+          <td>{{booking.email}}</td>
+          <td>{{booking.userPhone}}</td>
+          <td>{{booking.passengerName}}</td>
+          <td>{{booking.passengerAge}}</td>
+          <td>{{booking.passengerUIN}}</td>
+          <td>{{booking.gender}}</td>
+          <td>{{booking.flightNumber}}</td>
           <td><button type="button" class="btn btn-large btn-warning" (click)=removeBooking(booking.bookingId)>Remove</button></td>
   
         </tr>

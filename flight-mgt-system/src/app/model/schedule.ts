@@ -6,8 +6,7 @@ export class Schedule{
     destinationAirport:String;
     airportCode:String;
 
-    constructor(scheduleId:number,arrivalTime,departureTime,sourceAirport:String,destinationAirport:String,airportCode:String){
-        this.scheduleId=scheduleId;
+    constructor(arrivalTime,departureTime,sourceAirport:String,destinationAirport:String,airportCode:String){
         this.arrivalTime=arrivalTime;
         this.departureTime=departureTime;
         this.sourceAirport=sourceAirport;

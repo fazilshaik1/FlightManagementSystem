@@ -16,11 +16,10 @@ export class AddScheduledflightComponent {
 
   addScheduledFlight(form:any){
     let data = form.value;
-    let sfId:number=data.sfId;
-    let availableSeats:number=data.availableSeats;
-    let scheduleId:number=data.scheduleId;
-    let flightNumber:number=data.flightNumber;
-    this.scheduledflight= new ScheduledFlight(sfId,availableSeats,scheduleId,flightNumber);
+    let availableSeats=data.availableSeats;
+    let scheduleId=data.scheduleId;
+    let flightNumber=data.flightNumber;
+    this.scheduledflight= new ScheduledFlight(availableSeats,scheduleId,flightNumber);
     let observable:Observable<ScheduledFlight>=this.service.addScheduledFlight(this.scheduledflight)
     observable.subscribe(response=>{
       this.scheduledflight=response;

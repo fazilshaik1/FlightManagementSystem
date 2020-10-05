@@ -33,6 +33,7 @@ import { AddScheduledflightComponent } from './add-scheduledflight/add-scheduled
 import { GetScheduledflightComponent } from './get-scheduledflight/get-scheduledflight.component';
 import { ListallScheduledflightsComponent } from './listall-scheduledflights/listall-scheduledflights.component';
 import { ScheduledFlightService } from './service/scheduledflightservice';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ScheduledFlightService } from './service/scheduledflightservice';
     ListallSchedulesComponent,
     AddScheduledflightComponent,
     GetScheduledflightComponent,
-    ListallScheduledflightsComponent
+    ListallScheduledflightsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

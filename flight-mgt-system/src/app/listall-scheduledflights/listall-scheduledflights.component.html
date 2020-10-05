@@ -3,20 +3,34 @@
     <table class="table" >
       <thead class="thead-light" style="margin-top: 500px;">
         <tr>
-          <th scope="col">S.No</th>
         <th>sfId</th>
         <th>Available seats</th>
         <th>scheduleId</th>
         <th>flightNumber</th>
+        <th>Arrival Time</th>
+        <th>Departure Time</th>
+        <th>Source Airport</th>
+        <th>Destination Airport</th>
+        <th>airportCode</th>
+        <th>Flight Model</th>
+        <th>carrierName</th>
+        <th>Seat Capacity</th>
        </tr>
       </thead>
       <tbody>
         <tr *ngFor="let scheduledflight of scheduledflights">
-          <th scope="row">1</th>
           <td>{{scheduledflight.sfId}}</td>
           <td>{{scheduledflight.availableSeats}}</td>
           <td>{{scheduledflight.scheduleId}}</td>
           <td>{{scheduledflight.flightNumber}}</td>
+          <td>{{scheduledflight.arrivalTime}}</td>
+          <td>{{scheduledflight.departureTime}}</td>
+          <td>{{scheduledflight.sourceAirport}}</td>
+          <td>{{scheduledflight.destinationAirport}}</td>
+          <td>{{scheduledflight.airportCode}}</td>
+          <td>{{scheduledflight.flightModel}}</td>
+          <td>{{scheduledflight.carrierName}}</td>
+          <td>{{scheduledflight.seatCapacity}}</td>
           <td><button type="button" class="btn btn-large btn-warning" (click)=remove(scheduledflight.sfId)>Remove</button></td>
   
         </tr>

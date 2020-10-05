@@ -4,8 +4,7 @@ export class ScheduledFlight{
 	 scheduleId:number;
      flightNumber:number;
      
-     constructor(sfId:number,availableSeats:number,scheduleId:number, flightNumber:number){
-         this.sfId=sfId;
+     constructor(availableSeats:number,scheduleId:number, flightNumber:number){
          this.availableSeats=availableSeats;
          this.scheduleId;
          this.flightNumber;

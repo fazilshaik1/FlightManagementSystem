@@ -19,11 +19,12 @@ export class AddBookingComponent {
    addBooking(form:any){
      let data=form.value;
      let userId=data.userId;
-     let bookingDate=data.bookingDate;
+     let bookingDateStr=data.bookingDate;
+     let bookingDate=new Date(bookingDateStr).getMilliseconds;
      let ticketCost=data.ticketCost;
      let pnrNumber=data.pnrNumber;
      let sfId=data.sfId;
-     this.booking=new Booking(1,userId,bookingDate,ticketCost,pnrNumber,sfId);
+     this.booking=new Booking(userId,bookingDate,ticketCost,pnrNumber,sfId);
      let observable:Observable<Booking>=this.service.addBooking(this.booking);
      observable.subscribe(bookingArg=>{
        this.booking=bookingArg;

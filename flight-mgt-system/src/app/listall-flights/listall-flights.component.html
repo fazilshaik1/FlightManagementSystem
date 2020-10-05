@@ -2,7 +2,6 @@
     <table class="table" >
       <thead class="thead-light" style="margin-top: 500px;">
         <tr>
-          <th scope="col">S.No</th>
         <th>Flight Number</th>
         <th>Flight Model</th>
         <th>Carrier Name</th>
@@ -11,7 +10,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let flight of flights">
-          <th scope="row">1</th>
           <td>{{flight.flightNumber}}</td>
           <td>{{flight.flightModel}}</td>
           <td>{{flight.carrierName}}</td>

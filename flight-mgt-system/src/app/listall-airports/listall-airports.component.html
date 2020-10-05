@@ -2,15 +2,13 @@
     <table class="table" >
       <thead class="thead-light" style="margin-top: 500px;">
         <tr>
-          <th scope="col">S.No</th>
-        <th>Airport Code</th>
-        <th>Airport Name</th>
-        <th>Airport Location</th>
+        <th scope="col">Airport Code</th>
+        <th scope="col">Airport Name</th>
+        <th scope="col">Airport Location</th>
        </tr>
       </thead>
       <tbody>
         <tr *ngFor="let airport of airports">
-          <th scope="row">1</th>
           <td>{{airport.airportCode}}</td>
           <td>{{airport.airportName}}</td>
           <td>{{airport.airportLocation}}</td>

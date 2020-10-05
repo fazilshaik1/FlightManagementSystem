@@ -39,7 +39,7 @@
        phone number is required
       </div>
       <div class="col-7">
-          <input type="text" name="password" placeholder="Password"  ngModel #nameCtrl=ngModel class="form-control" >    
+          <input type="password" name="password" placeholder="Password"  ngModel #nameCtrl=ngModel class="form-control" >    
       </div>
       
       <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
@@ -47,7 +47,7 @@
       </div>
       
       
-         <div style="position:absolute; left:60px; top:400px">
+         <div style="position:absolute; left:60px; top:450px">
       <input type="submit" value="Submit"  class="btn btn-primary">    
       </div>
       </form>

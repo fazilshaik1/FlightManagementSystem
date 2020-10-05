@@ -11,13 +11,16 @@
   
   <div *ngIf="schedule!==undefined">
     
-    scheduleId is {{schedule.scheduleId}}
-    arrivalTime is {{schedule.arrivalTime}}
-    departuretime is {{schedule.departuretime}}
-    sourceAirport is {{schedule.sourceAirport}}
-    destinationAirport is {{schedule.destinationAirport}}
-    airportCode is {{schedule.airportCode}}
-  <br>
+    <ul style="position: relative; margin-top: 35px;">
+    <li>scheduleId is {{schedule.scheduleId}}</li>
+    <li>arrivalTime is {{schedule.arrivalTime}}</li>
+    <li>departuretime is {{schedule.departureTime}}</li>
+    <li>sourceAirport is {{schedule.sourceAirport}}</li>
+    <li>destinationAirport is {{schedule.destinationAirport}}</li>
+    <li>airportCode is {{schedule.airportCode}}</li>
+    <li>airportName is {{schedule.airportName}}</li>
+    <li>airportLocation is {{schedule.airportLocation}}</li>
+  </ul>
  
   
   </div>

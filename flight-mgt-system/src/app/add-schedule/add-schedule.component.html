@@ -1,13 +1,5 @@
 
 <form #myform=ngForm (ngSubmit)="myform.valid && addSchedule(myform)">
-  
-    <div class="col-7">
-        <input type="number" name="scheduleId" placeholder="schedule Id"  ngModel #scheduleCtrl=ngModel class="form-control" >    
-    </div>
-    
-    <div *ngIf="scheduleCtrl.errors!=null && scheduleCtrl.errors.required" class="error">
-     scheduleId is required
-    </div>
     
        <div class="col-7">
         <input type="datetime-local" name="arrivalTime" placeholder="arrivalTime" ngModel #dateCtrl=ngModel class="form-control" >    
@@ -63,4 +55,6 @@
     sourceAirport is {{schedule.sourceAirport}}
     destinationAirport is {{schedule.destinationAirport}}
     airportCode is {{schedule.airportCode}}
+    airportName is {{schedule.airportName}}
+    airportLocation is {{schedule.airportLocation}}
 </div>

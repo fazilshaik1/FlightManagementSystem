@@ -14,17 +14,20 @@ export class AddScheduleComponent {
 
   schedule:Schedule;
 
-  addSchedule(form:any){
-    let data =form.value;
-    let scheduleId=data.scheduleId;
+  addSchedule(myform:any){
+    let data =myform.value;
     let arrivaldateStr=data.arrivalTime;
-    let arrivaldate=new Date(arrivaldateStr);
+    let arrivalTime=new Date(arrivaldateStr);
+    let arrivalMillis=arrivalTime.getMilliseconds;
+    console.log("arrival time chosen is "+arrivalTime);
     let departureDateStr=data.departureTime;
-    let departureDate=new Date(departureDateStr);
+    let departureTime=new Date(departureDateStr);
+    let departureMillis=departureTime.getMilliseconds;
+    console.log("departure time chosen is "+departureTime);
     let sourceAirport=data.sourceAirport;
     let destinationAirport=data.destinationAirport;
     let airportCode=data.airportCode;
-    this.schedule=new Schedule(scheduleId,arrivaldate,departureDate,sourceAirport,destinationAirport,airportCode);
+    this.schedule=new Schedule(arrivalMillis,departureMillis,sourceAirport,destinationAirport,airportCode);
     let observable:Observable<Schedule>=this.scheduleService.addSchedule(this.schedule);
     observable.subscribe(response=>{
       this.schedule=response;

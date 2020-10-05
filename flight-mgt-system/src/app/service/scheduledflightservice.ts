@@ -6,7 +6,7 @@ import { ScheduledFlight } from '../model/scheduledflight';
 @Injectable()
 export class ScheduledFlightService{
 
-    baseUrl="http://localhost:8586/scheduleflights";
+    baseUrl="http://localhost:8586/scheduledflights";
 
     constructor(private http:HttpClient){}
 

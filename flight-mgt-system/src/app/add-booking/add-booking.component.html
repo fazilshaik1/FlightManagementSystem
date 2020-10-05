@@ -15,7 +15,7 @@
     </div>
     
        <div class="col-7">
-        <input type="date" name="bookingDate" placeholder="Booking date" ngModel #dateCtrl=ngModel class="form-control" >    
+        <input type="datetime-local" name="bookingDate" placeholder="Booking date" ngModel #dateCtrl=ngModel class="form-control" >    
     </div>
     
     <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required" class="error">
@@ -27,7 +27,7 @@
     </div>
     
     <div *ngIf="costCtrl.errors!=null && costCtrl.errors.required" class="error">
-     Date is required
+     
     </div>
 
     <div class="col-7">
@@ -35,7 +35,7 @@
     </div>
     
     <div *ngIf="pnrCtrl.errors!=null && pnrCtrl.errors.required" class="error">
-     Date is required
+     pnrNumber is required
     </div>
 
     <div class="col-7">
@@ -43,7 +43,7 @@
     </div>
     
     <div *ngIf="sfidCtrl.errors!=null && sfidCtrl.errors.required" class="error">
-     Date is required
+     sfId is required
     </div>
 
     <div style="position:absolute; margin-left: 20px; margin-top: 10px;">
@@ -64,6 +64,14 @@
                 <th scope="col">Ticket Cost</th>
                 <th scope="col">PNR Number</th>
                 <th scope="col">Sf Id</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">passenger Name</th>
+                <th scope="col">Passenger Age</th>
+                <th scope="col">passenger UIN</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Flight Number</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +83,14 @@
                 <td>{{booking.ticketCost}}</td>
                 <td>{{booking.pnrNumber}}</td>
                 <td>{{booking.sfId}}</td>
+                <td>{{booking.userName}}</td>
+                <td>{{booking.email}}</td>
+                <td>{{booking.userPhone}}</td>
+                <td>{{booking.passengerName}}</td>
+                <td>{{booking.passengerAge}}</td>
+                <td>{{booking.passengerUIN}}</td>
+                <td>{{booking.gender}}</td>
+                <td>{{booking.flightNumber}}</td>
               </tr>
               </tbody>
               </table>

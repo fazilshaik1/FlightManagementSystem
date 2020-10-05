@@ -11,11 +11,20 @@
   
   <div *ngIf="scheduledflight!==undefined">
     
-     sfId is {{scheduledflight.sfId}}
-     available seats are {{scheduledflight.availableSeats}}
-     scheduleId is {{scheduledflight.scheduleId}}
-     flightNumber is {{scheduledflight.flightNumber}}
-  <br>
+    <ul style="position: relative; margin-top: 75px;">
+     <li>sfId is {{scheduledflight.sfId}}</li>
+     <li>available seats are {{scheduledflight.availableSeats}}</li>
+     <li>scheduleId is {{scheduledflight.scheduleId}}</li>
+     <li>flightNumber is {{scheduledflight.flightNumber}}</li>
+     <li>arrivalTime is {{scheduledflight.arrivalTime}}</li>
+     <li>departureTime is {{scheduledflight.departureTime}}</li>
+     <li>sourceAirport is {{scheduledflight.sourceAirport}}</li>
+     <li>destinationAirport is {{scheduledflight.destinationAirport}}</li>
+     <li>airportCode is {{scheduledflight.airportCode}}</li>
+     <li>flightModel is {{scheduledflight.flightModel}}</li>
+     <li>carrierName is {{scheduledflight.carrierName}}</li>
+     <li>seatCapacity is {{scheduledflight.seatCapacity}}</li>
+    </ul>
  
   
   </div>

@@ -21,7 +21,12 @@ import { ListallSchedulesComponent } from './listall-schedules/listall-schedules
 import { AddScheduledflightComponent } from './add-scheduledflight/add-scheduledflight.component';
 import { GetScheduledflightComponent } from './get-scheduledflight/get-scheduledflight.component';
 import { ListallScheduledflightsComponent } from './listall-scheduledflights/listall-scheduledflights.component';
+import { HomeComponent } from './home/home.component';
+
+
 const routes: Routes = [
+  {path:'home', component:HomeComponent},
+  {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'add-airport', component:AddAirportComponent},
   {path:'list-airport', component:ListAirportComponent},
   {path:'listall-airports', component:ListallAirportsComponent},
@@ -34,8 +39,8 @@ const routes: Routes = [
   {path:'add-user', component:AddUserComponent},
   { path:'list-user', component:ListUserComponent},
   {path:'listall-users', component:ListallUsersComponent},
-  {path:"add-passenger" ,component:AddPassengerComponent},
-  {path:"listall-passengers" ,component:ListallPassengersComponent},
+  {path:'add-passenger' ,component:AddPassengerComponent},
+  {path:'listall-passengers' ,component:ListallPassengersComponent},
   {path:'list-passenger', component:ListPassengerComponent},
   {path:'add-schedule',component:AddScheduleComponent},
   {path:'find-schedule',component:GetScheduleComponent},
