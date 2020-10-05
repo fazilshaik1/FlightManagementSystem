@@ -1,0 +1,67 @@
+
+<form #myform=ngForm (ngSubmit)="myform.valid &&  addFlight(myform)">
+
+    <div class="col-7" style="margin-top: 20px;">
+        <input type="text" name="flightModel" placeholder="Flight model" required minlength="3" ngModel #modelCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="modelCtrl.errors!=null && modelCtrl.errors.required" class="error">
+     Model name is required
+    </div>
+    
+    
+    <div *ngIf="modelCtrl.errors!=null && modelCtrl.errors.minlength" class="error">
+        minlength is 3
+       </div>
+    
+    <div class="col-7">
+        <input type="text" name="carrierName" placeholder="Carrier name" required minlength="3" ngModel #carrierCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="carrierCtrl.errors!=null && carrierCtrl.errors.required" class="error">
+     carrier name is required
+    </div>
+    
+    
+    <div *ngIf="carrierCtrl.errors!=null && carrierCtrl.errors.minlength" class="error">
+        minlength is 3
+       </div>
+    
+       <div class="col-7">
+        <input type="number" name="seatCapacity" placeholder="seat capacity" ngModel #seatCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="seatCtrl.errors!=null && seatCtrl.errors.required" class="error">
+     seat capacity is required
+    </div>
+    
+
+       <div style="position:absolute; margin-left: 10px; margin-top: 10px;">
+    <input type="submit" value="Submit"  class="btn btn-primary">    
+    </div>
+    </form>
+        <br>
+        
+        <div class ="container" *ngIf="flight!==undefined">
+         <h3>Flight Added </h3>   
+         <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Number</th>
+                <th scope="col">Model</th>
+                <th scope="col">Carrier Name</th>
+                <th scope="col">Seat capacity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{flight.flightNumber}}</td>
+                <td>{{flight.flightModel}}</td>      
+                <td>{{flight.carrierName}}</td>
+                <td>{{flight.seatCapacity}}</td>
+              </tr>
+              </tbody>
+              </table>
+        </div>

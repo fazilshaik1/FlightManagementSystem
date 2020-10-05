@@ -1,0 +1,54 @@
+
+<form #myform=ngForm (ngSubmit)="myform.valid &&  addScheduledFlight(myform)">
+
+    <div class="col-7">
+        <input type="number" name="availableSeats" placeholder="availableSeats" ngModel #availableseatCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="availableseatCtrl.errors!=null && availableseatCtrl.errors.required" class="error">
+    
+    </div>
+    <div class="col-7">
+        <input type="number" name="scheduleId" placeholder="scheduleId" ngModel #scheduleIdCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="scheduleIdCtrl.errors!=null && scheduleIdCtrl.errors.required" class="error">
+     scheduleId is required
+    </div>
+    <div class="col-7">
+        <input type="number" name="flightNumber" placeholder="flightNumber" ngModel #flightNumberCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="flightNumberCtrl.errors!=null && flightNumberCtrl.errors.required" class="error">
+     flightNumber is required
+    </div>
+    
+       <div style="position:absolute;margin-left: 10px; margin-top: 10px;">
+    <input type="submit" value="Submit"  class="btn btn-primary">    
+    </div>
+    </form>
+        <br>
+        
+        <div class ="container" *ngIf="scheduledflight!==undefined">
+         <h3>Scheduledflight Added </h3>   
+         <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">sfId</th>
+                <th scope="col">Available Seats</th>
+                <th scope="col">ScheduleId</th>
+                <th scope="col">FlightNumber</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{scheduledflight.sfId}}</td>
+                <td>{{scheduledflight.availableSeats}}</td>
+                <td>{{scheduledflight.scheduleId}}</td>
+                <td>{{scheduledflight.flightNumber}}</td>
+              </tr>
+              </tbody>
+              </table>
+        </div>

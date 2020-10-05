@@ -1,0 +1,76 @@
+<div class="container">
+    <table class="table" >
+      <thead class="thead-light" style="margin-top: 500px;">
+        <tr>
+          <th scope="col">S.No</th>
+        <th>Airport Code</th>
+        <th>Airport Name</th>
+        <th>Airport Location</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let airport of airports">
+          <th scope="row">1</th>
+          <td>{{airport.airportCode}}</td>
+          <td>{{airport.airportName}}</td>
+          <td>{{airport.airportLocation}}</td>
+          <td><button type="button" class="btn btn-large btn-warning" (click)=removeAirport(airport.airportCode)>Remove</button></td>
+  
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!--
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Airport Code</th>
+        <th scope="col">Airport Name</th>
+        <th scope="col">Airport Location</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let airport of airports">
+    <tbody>
+            
+        <th >1</th>
+        <td >{{airport.airportCode}}</td>
+        <td >{{airport.airportName}}</td>
+        <td >{{airport.airportLocation}}</td>
+      
+    </tbody>
+  </tr>
+  </table>
+  -->
+  
+  <!--
+  <table border="1">
+  <ul class="list-group list-group-horizontal-md"></ul>
+      <tr>
+        <th>Airport Code</th>
+        <th>Airport Name</th>
+       <th>Airport Location</th> 
+      </tr>  
+      <tr *ngFor="let airport of airports">
+          <td>
+          {{airport.airportCode}}
+          </td>
+      
+        <td>
+       {{airport.airportName}} 
+      </td>
+      
+      <td>
+        {{airport.airportLocation}}
+      
+      </td>
+      
+       <td>
+          <button type="button" class="btn btn-warning" (click)="removeAirport(airport.airportCode)">Remove airport</button>
+        
+        </td>  
+      
+        </tr>
+      </table>
+      -->

@@ -1,0 +1,24 @@
+
+
+<form #codeform=ngForm (ngSubmit)=findUser(codeform) >
+
+    <div class="form-group">
+    <label>User Id</label>
+    <input type="any" name="userId"   ngModel class="form-control">
+  </div>
+    <input type="submit" value="Search" class="btn btn-success">
+  </form>
+  <br>
+  
+  <div *ngIf="user!==undefined">
+    
+    Id is {{user.userId}}
+    Name is {{user.userName}}
+    Type is {{user.userType}}
+    Email is {{user.email}}
+    phone number is {{user.userPhone}}
+    Password is {{user.password}}
+  <br>
+  <p>list-user works!</p>
+  
+  </div>

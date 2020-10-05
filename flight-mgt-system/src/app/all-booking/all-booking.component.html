@@ -1,0 +1,31 @@
+<p>all-booking works!</p>
+
+<div class="container">
+    <table class="table" >
+      <thead class="thead-light" style="margin-top: 500px;">
+        <tr>
+          <th scope="col">S.No</th>
+        <th>Booking Id</th>
+        <th>User Id</th>
+        <th>Booking Date</th>
+        <th>Ticket Cost</th>
+        <th>PNR Number</th>
+        <th>Sf Id</th>
+       </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <th scope="row">1</th>
+          <td>{{booking.bookingId}}</td>
+          <td>{{booking.userId}}</td>      
+          <td>{{booking.bookingDate}}</td>
+          <td>{{booking.ticketCost}}</td>
+          <td>{{booking.pnrNumber}}</td>
+          <td>{{booking.sfId}}</td>
+          <td><button type="button" class="btn btn-large btn-warning" (click)=removeBooking(booking.bookingId)>Remove</button></td>
+  
+        </tr>
+      </tbody>
+    </table>
+  </div>

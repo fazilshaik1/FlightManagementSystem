@@ -1,0 +1,31 @@
+<div class="container">
+    <table class="table" >
+      <thead class="thead-light" style="margin-top: 500px;">
+        <tr>
+          <th scope="col">S.No</th>
+        <th>User Id</th>
+        <th>User Type</th>
+        <th>user Name</th>
+        <th>Email</th>
+        <th>user phone</th>
+        <th>password</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th scope="row">1</th>
+          <td>{{user.userId}}</td>
+          <td>{{user.userType}}</td>
+          <td>{{user.userName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.userPhone}}</td>
+          <td>{{user.password}}</td>
+          <td><button type="button" class="btn btn-large btn-warning" (click)=deleteUser(user.userId)>Delete</button></td>
+  
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+ 

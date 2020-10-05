@@ -1,0 +1,23 @@
+
+<form #scheduleform=ngForm (ngSubmit)=findSchedule(scheduleform) >
+
+    <div class="form-group">
+    <label>scheduleId</label>
+    <input type="any" name="scheduleId"   ngModel class="form-control">
+  </div>
+    <input type="submit" value="Search" class="btn btn-success">
+  </form>
+  <br>
+  
+  <div *ngIf="schedule!==undefined">
+    
+    scheduleId is {{schedule.scheduleId}}
+    arrivalTime is {{schedule.arrivalTime}}
+    departuretime is {{schedule.departuretime}}
+    sourceAirport is {{schedule.sourceAirport}}
+    destinationAirport is {{schedule.destinationAirport}}
+    airportCode is {{schedule.airportCode}}
+  <br>
+ 
+  
+  </div>

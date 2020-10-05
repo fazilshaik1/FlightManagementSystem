@@ -1,0 +1,59 @@
+
+<form #myform=ngForm (ngSubmit)="myform.valid &&  addAirport(myform)">
+
+    <div class="col-7" style="margin-top: 20px;">
+        <input type="text" name="airportName" placeholder="Airport name" required minlength="3" ngModel #nameCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+     Name is required
+    </div>
+    
+    
+    <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.minlength" class="error">
+        minlength of name is 3
+       </div>
+    
+    
+    
+    
+    <div class="col-7">
+        <input type="text" name="airportLocation" placeholder="Airport Location" required minlength="3" ngModel #airportLocationCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="airportLocationCtrl.errors!=null && airportLocationCtrl.errors.required" class="error">
+     location is required
+    </div>
+    
+    
+    <div *ngIf="airportLocationCtrl.errors!=null && airportLocationCtrl.errors.minlength" class="error">
+        minlength of location is 3
+       </div>
+    
+       <div style="position:absolute;margin-left: 10px; margin-top: 10px;">
+    <input type="submit" value="Submit"  class="btn btn-primary">    
+    </div>
+    </form>
+        <br>
+        
+        <div class ="container" *ngIf="airport!==undefined">
+         <h3>Airport Added </h3>   
+         <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{airport.airportCode}}</td>
+                <td>{{airport.airportName}}</td>
+                <td>{{airport.airportLocation}}</td>
+              </tr>
+              </tbody>
+              </table>
+        </div>

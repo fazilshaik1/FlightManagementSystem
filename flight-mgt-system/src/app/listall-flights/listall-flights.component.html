@@ -1,0 +1,24 @@
+<div class="container">
+    <table class="table" >
+      <thead class="thead-light" style="margin-top: 500px;">
+        <tr>
+          <th scope="col">S.No</th>
+        <th>Flight Number</th>
+        <th>Flight Model</th>
+        <th>Carrier Name</th>
+        <th>Seat Capacity</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of flights">
+          <th scope="row">1</th>
+          <td>{{flight.flightNumber}}</td>
+          <td>{{flight.flightModel}}</td>
+          <td>{{flight.carrierName}}</td>
+          <td>{{flight.seatCapacity}}</td>
+          <td><button type="button" class="btn btn-large btn-warning" (click)=removeFlight(flight.flightNumber)>Remove</button></td>
+  
+        </tr>
+      </tbody>
+    </table>
+  </div>

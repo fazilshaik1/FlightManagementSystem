@@ -1,0 +1,81 @@
+
+<form #myform=ngForm (ngSubmit)="myform.valid &&  addUser(myform)">
+    
+      <div class="col-7">
+          <input type="text" name="userType" placeholder="User type"  ngModel #nameCtrl=ngModel class="form-control" >    
+      </div>
+      
+      <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+       Type is required
+      </div>
+  
+      <div class="col-7">
+          <input type="text" name="userName" placeholder="User name" required minlength="3" ngModel #nameCtrl=ngModel class="form-control" >    
+      </div>
+      
+      <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+       Name is required
+      </div>
+      
+      
+      <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.minlength" class="error">
+          minlength of name is 3
+         </div>
+      
+      
+         <div class="col-7">
+          <input type="text" name="email" placeholder="email" ngModel #nameCtrl=ngModel class="form-control" >    
+      </div>
+      
+      <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+       Email is required
+      </div>
+  
+      <div class="col-7">
+          <input type="text" name="userPhone" placeholder="User phone"  ngModel #nameCtrl=ngModel class="form-control" >    
+      </div>
+      
+      <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+       phone number is required
+      </div>
+      <div class="col-7">
+          <input type="text" name="password" placeholder="Password"  ngModel #nameCtrl=ngModel class="form-control" >    
+      </div>
+      
+      <div *ngIf="nameCtrl.errors!=null && nameCtrl.errors.required" class="error">
+       Password is required
+      </div>
+      
+      
+         <div style="position:absolute; left:60px; top:400px">
+      <input type="submit" value="Submit"  class="btn btn-primary">    
+      </div>
+      </form>
+          <br>
+          
+          <div class ="container" *ngIf="user!==undefined">
+           <h3>User Added </h3>   
+           <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Password</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+               
+                  <td>{{user.userId}}</td>
+                  <td>{{user.userType}}</td>
+                  <td>{{user.userName}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.userPhone}}</td>
+                  <td>{{user.password}}</td>
+                </tr>
+              </tbody>
+                </table>
+          </div>

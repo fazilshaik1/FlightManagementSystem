@@ -1,0 +1,31 @@
+<p>get-booking works!</p>
+
+<h3>User details</h3>
+<form #idform=ngForm (ngSubmit)=findBooking(idform) >
+
+  <div class="col-7" >
+  <label>Booking Id</label>
+  <input type="number" name="bookingId"   ngModel class="form-control">
+</div>
+<span style="position:absolute; margin-left: 20px; margin-top: 10px;">
+  <input type="submit" value="Search" class="btn btn-success">
+</span>
+</form>
+<br>
+
+<div *ngIf="booking!==undefined">
+  
+  
+Booking id is {{booking.bookingId }}
+<br>
+User id is {{booking.userId}}     
+<br>
+date is {{booking.bookingDate}}
+<br>
+Ticket cost is {{booking.ticketCost}}
+<br>
+PNR number is {{booking.pnrNumber}}
+<br>
+SF id is {{booking.sfId}}
+<br>
+

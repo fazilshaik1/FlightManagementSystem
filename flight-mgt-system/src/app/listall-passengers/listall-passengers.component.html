@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table" >
+
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">pnrNumber</th>
+        <th >Passenger name</th>
+        <th >passenger age</th>
+        <th >passengerUIN</th>
+       <th >gender</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let passenger of passengers">
+        <th scope="row" >1</th>
+        <td>{{passenger.pnrNumber}}</td>
+        <td>{{passenger.passengerName}}</td>
+        <td>{{passenger.passengerAge}}</td>
+        <td>{{passenger.passengerUIN}}</td>
+        <td>{{passenger.gender}}</td>
+        <td><button type="button" class="btn btn-large btn-warning" (click)=removePassenger(passenger.pnrNumber)>Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+ 
+ 

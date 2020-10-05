@@ -1,0 +1,66 @@
+
+<form #myform=ngForm (ngSubmit)="myform.valid && addSchedule(myform)">
+  
+    <div class="col-7">
+        <input type="number" name="scheduleId" placeholder="schedule Id"  ngModel #scheduleCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="scheduleCtrl.errors!=null && scheduleCtrl.errors.required" class="error">
+     scheduleId is required
+    </div>
+    
+       <div class="col-7">
+        <input type="datetime-local" name="arrivalTime" placeholder="arrivalTime" ngModel #dateCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required" class="error">
+     arrivalTime is required
+    </div>
+
+    <div class="col-7">
+        <input type="datetime-local" name="departureTime" placeholder="departureTime" ngModel #dateCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="dateCtrl.errors!=null && dateCtrl.errors.required" class="error">
+     departureTime is required
+    </div>
+    
+    <div class="col-7">
+        <input type="text" name="sourceAirport" placeholder="sourceAirport" ngModel #sourceAirportCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="sourceAirportCtrl.errors!=null && sourceAirportCtrl.errors.required" class="error">
+     sourceAirport is required
+    </div>
+
+    <div class="col-7">
+        <input type="text" name="destinationAirport" placeholder="destinationAirport" ngModel #destinationAirportCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="destinationAirportCtrl.errors!=null && destinationAirportCtrl.errors.required" class="error">
+        destinationAirport is required
+    </div>
+
+     <div class="col-7">
+        <input type="text" name="airportCode" placeholder="airportCode" ngModel #airportCodeCtrl=ngModel class="form-control" >    
+    </div>
+    
+    <div *ngIf="airportCodeCtrl.errors!=null && airportCodeCtrl.errors.required" class="error">
+        airportCode is required
+    </div>
+
+    <div style="position:absolute; margin-left: 20px; margin-top: 10px;">
+    <input type="submit" value="Submit"  class="btn btn-primary">    
+    </div>
+  
+  </form>
+  
+  <div *ngIf="schedule!==undefined">
+    <h2>Added schedule is </h2>
+    scheduleId is {{schedule.scheduleId}}
+    arrivalTime is {{schedule.arrivalTime}}
+    departureTime is {{schedule.departureTime}}
+    sourceAirport is {{schedule.sourceAirport}}
+    destinationAirport is {{schedule.destinationAirport}}
+    airportCode is {{schedule.airportCode}}
+</div>
