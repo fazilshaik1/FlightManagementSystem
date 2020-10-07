@@ -10,20 +10,25 @@ import { ScheduledFlightService } from '../service/scheduledflightservice';
 })
 export class AddScheduledflightComponent {
 
-  constructor(private service:ScheduledFlightService) { }
+  constructor(private sfservice:ScheduledFlightService) { }
 
   scheduledflight:ScheduledFlight;
 
-  addScheduledFlight(form:any){
-    let data = form.value;
+  addScheduledFlight(myform:any){
+    let data = myform.value;
     let availableSeats=data.availableSeats;
     let scheduleId=data.scheduleId;
     let flightNumber=data.flightNumber;
     this.scheduledflight= new ScheduledFlight(availableSeats,scheduleId,flightNumber);
-    let observable:Observable<ScheduledFlight>=this.service.addScheduledFlight(this.scheduledflight)
+    let observable:Observable<ScheduledFlight>=this.sfservice.addScheduledFlight(this.scheduledflight)
     observable.subscribe(response=>{
       this.scheduledflight=response;
     });
+  }
+
+  getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
   }
 
 

@@ -16,8 +16,8 @@
       <tbody>
         <tr *ngFor="let schedule of schedules">
           <td>{{schedule.scheduleId}}</td>
-          <td>{{schedule.arrivalTime}}</td>
-          <td>{{schedule.departureTime}}</td>
+          <td>{{getDate(schedule.arrivalTime)}}</td>
+          <td>{{getDate(schedule.departureTime)}}</td>
           <td>{{schedule.sourceAirport}}</td>
           <td>{{schedule.destinationAirport}}</td>
           <td>{{schedule.airportCode}}</td>

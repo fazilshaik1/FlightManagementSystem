@@ -32,5 +32,9 @@ export class GetScheduledflightComponent {
     let sfId=data.sfId;
     this.getScheduledFlightBySfId(sfId);
   }
+  getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
+  }
 
 }

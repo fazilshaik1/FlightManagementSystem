@@ -50,8 +50,8 @@
   <div *ngIf="schedule!==undefined">
     <h2>Added schedule is </h2>
     scheduleId is {{schedule.scheduleId}}
-    arrivalTime is {{schedule.arrivalTime}}
-    departureTime is {{schedule.departureTime}}
+    arrivalTime is {{getDate(schedule.arrivalTime)}}
+    departureTime is {{getDate(schedule.departureTime)}}
     sourceAirport is {{schedule.sourceAirport}}
     destinationAirport is {{schedule.destinationAirport}}
     airportCode is {{schedule.airportCode}}

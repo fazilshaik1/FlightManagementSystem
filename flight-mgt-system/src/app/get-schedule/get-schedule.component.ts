@@ -33,6 +33,11 @@ export class GetScheduleComponent {
     this.getScheduleById(scheduleId);
   }
 
+  getDate(millis:number){
+    let date=new Date(millis);
+    return date;
+  }
+
 
 
   

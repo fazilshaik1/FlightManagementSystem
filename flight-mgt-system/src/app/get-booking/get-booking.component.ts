@@ -34,6 +34,11 @@ export class GetBookingComponent {
      let bookingId=data.bookingId;
      this.findBookingById(bookingId);
    }
+
+   getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
+  }
   
 
 }

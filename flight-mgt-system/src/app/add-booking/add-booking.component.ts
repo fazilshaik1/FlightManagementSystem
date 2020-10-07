@@ -20,7 +20,7 @@ export class AddBookingComponent {
      let data=form.value;
      let userId=data.userId;
      let bookingDateStr=data.bookingDate;
-     let bookingDate=new Date(bookingDateStr).getMilliseconds;
+     let bookingDate=new Date(bookingDateStr).getTime();
      let ticketCost=data.ticketCost;
      let pnrNumber=data.pnrNumber;
      let sfId=data.sfId;
@@ -30,6 +30,11 @@ export class AddBookingComponent {
        this.booking=bookingArg;
      });
    }
+
+   getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
+  }
    
 
 }

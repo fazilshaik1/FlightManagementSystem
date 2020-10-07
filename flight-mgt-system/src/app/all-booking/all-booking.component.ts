@@ -32,4 +32,9 @@ export class AllBookingComponent  {
     }
   }
 
+  getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
+  }
+
 }

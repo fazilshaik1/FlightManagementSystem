@@ -11,13 +11,14 @@
   
   <div *ngIf="scheduledflight!==undefined">
     
-    <ul style="position: relative; margin-top: 75px;">
+    <ul style="position: relative; margin-top: 50px;">
+      <h2>Searched scheduled flight details are </h2>
      <li>sfId is {{scheduledflight.sfId}}</li>
      <li>available seats are {{scheduledflight.availableSeats}}</li>
      <li>scheduleId is {{scheduledflight.scheduleId}}</li>
      <li>flightNumber is {{scheduledflight.flightNumber}}</li>
-     <li>arrivalTime is {{scheduledflight.arrivalTime}}</li>
-     <li>departureTime is {{scheduledflight.departureTime}}</li>
+     <li>arrivalTime is {{getDate(scheduledflight.arrivalTime)}}</li>
+     <li>departureTime is {{getDate(scheduledflight.departureTime)}}</li>
      <li>sourceAirport is {{scheduledflight.sourceAirport}}</li>
      <li>destinationAirport is {{scheduledflight.destinationAirport}}</li>
      <li>airportCode is {{scheduledflight.airportCode}}</li>

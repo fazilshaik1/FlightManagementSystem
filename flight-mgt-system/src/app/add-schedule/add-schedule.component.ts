@@ -18,12 +18,12 @@ export class AddScheduleComponent {
     let data =myform.value;
     let arrivaldateStr=data.arrivalTime;
     let arrivalTime=new Date(arrivaldateStr);
-    let arrivalMillis=arrivalTime.getMilliseconds;
-    console.log("arrival time chosen is "+arrivalTime);
+    let arrivalMillis=arrivalTime.getTime();
+    console.log("arrival time chosen is "+arrivalMillis+" local format is"+arrivalTime);
     let departureDateStr=data.departureTime;
     let departureTime=new Date(departureDateStr);
-    let departureMillis=departureTime.getMilliseconds;
-    console.log("departure time chosen is "+departureTime);
+    let departureMillis=departureTime.getTime();
+    console.log("departure time chosen is "+departureMillis+" local format is "+departureTime);
     let sourceAirport=data.sourceAirport;
     let destinationAirport=data.destinationAirport;
     let airportCode=data.airportCode;
@@ -32,6 +32,11 @@ export class AddScheduleComponent {
     observable.subscribe(response=>{
       this.schedule=response;
     });
+  }
+
+  getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
   }
 
 }

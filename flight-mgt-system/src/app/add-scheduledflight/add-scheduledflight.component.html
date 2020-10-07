@@ -16,7 +16,7 @@
      scheduleId is required
     </div>
     <div class="col-7">
-        <input type="number" name="flightNumber" placeholder="flightNumber" ngModel #flightNumberCtrl=ngModel class="form-control" >    
+        <input type="text" name="flightNumber" placeholder="flightNumber" ngModel #flightNumberCtrl=ngModel class="form-control" >    
     </div>
     
     <div *ngIf="flightNumberCtrl.errors!=null && flightNumberCtrl.errors.required" class="error">
@@ -50,9 +50,17 @@
     <div *ngIf="scheduledflight!==undefined">
       <h2>Added scheduled flight is </h2>
       sfId is {{scheduledflight.sfId}}
-      availableSeats is {{scheduledflight.availableSeats}}
+      availableSeats are {{scheduledflight.availableSeats}}
       scheduleId is {{scheduledflight.scheduleId}}
       flightNumber is {{scheduledflight.flightNumber}}
+      arrival Time is {{getDate(scheduledflight.arrivalTime)}}
+      departure Time is {{getDate(scheduledflight.departureTime)}}
+      source Airport is {{scheduledflight.sourceAirport}}
+      destination Airport is {{scheduledflight.destinationAirport}}
+      airport Code is {{scheduledflight.airportCode}}
+      flight Model is {{scheduledflight.flightModel}}
+      carrier Name is {{scheduledflight.carrierName}}
+      seat Capacity is {{scheduledflight.seatCapacity}}
   </div>
         
        

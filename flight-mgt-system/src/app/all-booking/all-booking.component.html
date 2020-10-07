@@ -25,7 +25,7 @@
         <tr *ngFor="let booking of bookings">
           <td>{{booking.bookingId}}</td>
           <td>{{booking.userId}}</td>      
-          <td>{{booking.bookingDate}}</td>
+          <td>{{getDate(booking.bookingDate)}}</td>
           <td>{{booking.ticketCost}}</td>
           <td>{{booking.pnrNumber}}</td>
           <td>{{booking.sfId}}</td>

@@ -31,6 +31,10 @@ export class ListallSchedulesComponent {
       }
     }
   }
+  getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
+  }
 
   
 

@@ -34,6 +34,10 @@ export class ListallScheduledflightsComponent {
       }
     }
   }
+  getDate (arrivalMillis:number ){
+    let date = new Date(arrivalMillis);
+    return date;
+  }
 
  
 
